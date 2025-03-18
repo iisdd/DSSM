@@ -1,0 +1,151 @@
+--user特征:dense & sparse
+with samples as (
+    select *
+    from g3_feature_dev.c2b_dssm_samples_search_step1
+    where dt = '${date_y_m_d}'
+)
+,user_offline_features as (
+    select *
+    from g3_feature_dev.c2b_dssm_user_offline_features
+    where dt = date_add('${date_y_m_d}', -1)
+)
+insert overwrite table g3_feature_dev.c2b_dssm_samples_search_step2 partition(dt='${date_y_m_d}')
+select a.user_id
+    ,a.clue_id
+    ,a.recommend_id
+    ,a.label
+    ,a.ts
+    ,s_i_c2b_evaluate_score_segment
+    ,s_i_city_id
+    ,s_i_emission_standard
+    ,s_i_minor_category_id
+    ,s_i_model_price_bin
+    ,s_i_car_year
+    ,s_i_gearbox
+    ,s_i_air_displacement
+    ,s_i_tag_id
+    ,s_i_car_color
+    ,s_i_guobie
+    ,s_i_c2b_evaluate_level
+    ,s_i_auto_type
+    ,s_i_fuel_type
+    ,s_i_seats
+    ,s_i_c2b_ctob_car_level
+    ,d_i_c2b_offline_car_click_bid_rate_0_3_d
+    ,d_i_c2b_offline_car_click_bid_rate_0_30_d
+    ,d_i_c2b_offline_car_beseen_click_rate_0_3_d
+    ,d_i_c2b_offline_car_beseen_click_rate_0_30_d
+    ,d_i_c2b_offline_car_tag_id_bid_percent_ratio_0_7_d
+    ,d_i_c2b_offline_car_tag_id_bid_percent_ratio_7_14_d
+    ,d_i_c2b_offline_car_tag_id_bid_percent_ratio_14_30_d
+    ,d_i_c2b_offline_car_tag_id_click_rate_0_7_d
+    ,d_i_c2b_offline_car_tag_id_click_rate_7_14_d
+    ,d_i_c2b_offline_car_tag_id_bid_rate_0_7_d
+    ,d_i_c2b_offline_car_tag_id_bid_rate_7_14_d
+    ,d_i_c2b_offline_car_minor_category_id_click_rate_0_7_d
+    ,d_i_transfer_num
+    ,d_i_c2b_evaluate_score
+    ,d_i_c2b_ctob_model_price
+    ,d_i_c2b_seller_price
+    ,d_i_c2b_ctob_diff_price
+    ,d_i_road_haul
+    ,d_u_beseen_cnt_0_7
+    ,d_u_beseen_cnt_7_14
+    ,d_u_beseen_cnt_14_30
+    ,d_u_click_cnt_0_7
+    ,d_u_click_cnt_7_14
+    ,d_u_click_cnt_14_30
+    ,d_u_bid_cnt_0_7
+    ,d_u_bid_cnt_7_14
+    ,d_u_bid_cnt_14_30
+    ,d_u_contract_cnt_30
+    ,d_u_contract_cnt_365
+    ,d_u_click_road_haul_max_0_7
+    ,d_u_click_road_haul_min_0_7
+    ,d_u_click_road_haul_median_0_7
+    ,d_u_click_evaluate_score_max_0_7
+    ,d_u_click_evaluate_score_min_0_7
+    ,d_u_click_evaluate_score_median_0_7
+    ,d_u_bid_road_haul_max_0_7
+    ,d_u_bid_road_haul_min_0_7
+    ,d_u_bid_road_haul_median_0_7
+    ,d_u_bid_evaluate_score_max_0_7
+    ,d_u_bid_evaluate_score_min_0_7
+    ,d_u_bid_evaluate_score_median_0_7
+    ,d_u_click_road_haul_max_0_30
+    ,d_u_click_road_haul_min_0_30
+    ,d_u_click_road_haul_median_0_30
+    ,d_u_click_evaluate_score_max_0_30
+    ,d_u_click_evaluate_score_min_0_30
+    ,d_u_click_evaluate_score_median_0_30
+    ,d_u_bid_road_haul_max_0_30
+    ,d_u_bid_road_haul_min_0_30
+    ,d_u_bid_road_haul_median_0_30
+    ,d_u_bid_evaluate_score_max_0_30
+    ,d_u_bid_evaluate_score_min_0_30
+    ,d_u_bid_evaluate_score_median_0_30
+    ,d_u_deal_road_haul_max_0_30
+    ,d_u_deal_road_haul_min_0_30
+    ,d_u_deal_road_haul_median_0_30
+    ,d_u_deal_evaluate_score_max_0_30
+    ,d_u_deal_evaluate_score_min_0_30
+    ,d_u_deal_evaluate_score_median_0_30
+    ,d_u_deal_road_haul_max_0_365
+    ,d_u_deal_road_haul_min_0_365
+    ,d_u_deal_road_haul_median_0_365
+    ,d_u_deal_evaluate_score_max_0_365
+    ,d_u_deal_evaluate_score_min_0_365
+    ,d_u_deal_evaluate_score_median_0_365
+    ,s_u_click_tag_id_0_7
+    ,s_u_click_seats_0_7
+    ,s_u_click_minor_category_id_0_7
+    ,s_u_click_guobie_0_7
+    ,s_u_click_gearbox_0_7
+    ,s_u_click_fuel_type_0_7
+    ,s_u_click_emission_standard_0_7
+    ,s_u_click_city_id_0_7
+    ,s_u_click_car_year_0_7
+    ,s_u_click_auto_type_0_7
+    ,s_u_click_car_color_0_7
+    ,s_u_click_c2b_evaluate_level_segment_0_7
+    ,s_u_click_c2b_evaluate_score_segment_0_7
+    ,s_u_click_model_price_bin_0_7
+    ,s_u_bid_tag_id_0_7
+    ,s_u_bid_seats_0_7
+    ,s_u_bid_minor_category_id_0_7
+    ,s_u_bid_guobie_0_7
+    ,s_u_bid_gearbox_0_7
+    ,s_u_bid_fuel_type_0_7
+    ,s_u_bid_emission_standard_0_7
+    ,s_u_bid_city_id_0_7
+    ,s_u_bid_car_year_0_7
+    ,s_u_bid_auto_type_0_7
+    ,s_u_bid_car_color_0_7
+    ,s_u_bid_c2b_evaluate_level_segment_0_7
+    ,s_u_bid_c2b_evaluate_score_segment_0_7
+    ,s_u_bid_model_price_bin_0_7
+    ,s_u_deal_tag_id_0_30
+    ,s_u_deal_seats_0_30
+    ,s_u_deal_minor_category_id_0_30
+    ,s_u_deal_guobie_0_30
+    ,s_u_deal_gearbox_0_30
+    ,s_u_deal_fuel_type_0_30
+    ,s_u_deal_emission_standard_0_30
+    ,s_u_deal_city_id_0_30
+    ,s_u_deal_car_year_0_30
+    ,s_u_deal_auto_type_0_30
+    ,s_u_deal_car_color_0_30
+    ,s_u_deal_tag_id_0_365
+    ,s_u_deal_seats_0_365
+    ,s_u_deal_minor_category_id_0_365
+    ,s_u_deal_guobie_0_365
+    ,s_u_deal_gearbox_0_365
+    ,s_u_deal_fuel_type_0_365
+    ,s_u_deal_emission_standard_0_365
+    ,s_u_deal_city_id_0_365
+    ,s_u_deal_car_year_0_365
+    ,s_u_deal_auto_type_0_365
+    ,s_u_deal_car_color_0_365
+from samples a
+left join user_offline_features b
+on a.user_id = b.user_id
