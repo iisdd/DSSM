@@ -55,4 +55,5 @@
 - 向量计算一致：同样的模型输入线上线下计算的向量是否一致
 
 <img src="./pic/工程流程.png" alt="流程图" width="500" />
+![流程图](https://github.com/iisdd/DSSM/tree/main/pic/工程流程.png)
 <img src="./pic/模型框架.png" alt="流程图" width="500" />
