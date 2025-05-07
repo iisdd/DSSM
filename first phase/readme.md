@@ -26,6 +26,6 @@
 
 ## 反思复盘
 - (已解决)用户特征明明用的全是离线特征，但是隔1个小时刷的用户向量有1700条不同，一共14000条，python的计算精度问题，影响基本在小数点8位之后，解决方法为cos相似度 > 1-1e-6则认为相等，不更新，可过滤100%类似更新
-<img src="./pic/review1.png" alt="反思1" width="300" /> <img src="./pic/review2.png" alt="反思2" width="300" />
+<img src="./pic/review1.png" alt="反思1" width="500" /> <img src="./pic/review2.png" alt="反思2" width="200" />
 - (已解决)修改样本生成口径，把车源基础属性数据源换成实时表
 - (已解决)目前每次写数时长20min，按道理应该是每天第一次写入20min，后面都是7、8分钟，现在去重的代码还有点问题，排查中；从pd.read_csv改成spark.read_csv即可
