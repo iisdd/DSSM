@@ -7,6 +7,7 @@
 
 ## 结论
 08-22 ~ 09-04 14天数据：(已于2024-09-06下线)
+
 <img src="./pic/res.png" alt="指标" width="500" />
 <img src="./pic/bid curve.png" alt="出价曲线" width="500" />
 
