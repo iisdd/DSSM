@@ -8,7 +8,7 @@
 - pv维度：出价pv+10.51%，到模型价100%pv+7.57%
 - 车商车源对维度：出价pair+11.94%，出价pair按出价深度加权 +6.60%，到模型价80%pair+3.09%，到模型价90%pair+7.16%，到模型价100%pair+10.37%
 - 车源维度：出价车源+7.53%，到模型价90%车源+3.98%，到模型价100%车源+5.50%
-<img src="./pic/res.png" alt="指标" width="666" />
+<img src="./pic/resss.png" alt="指标" width="666" />
 <img src="./pic/bid curve.png" alt="出价曲线" width="666" />
 - 2024-09-09~2024-09-18回溯数据
 <img src="./pic/retrace.png" alt="回溯指标" width="666" />
