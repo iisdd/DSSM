@@ -29,7 +29,6 @@
   - `inference_spark_item_search.py`: 使用Spark更新车源向量，以前定时任务更新用，现在唯一用处是测试刷mysql表后有没有同步到ES。
   - `c2b_recall_refresh_item_search.sh`: 提交spark任务的脚本，用户和车源任务格式类似。
     
-
 - **jupyter/**
   - `今日秒杀双塔召回工具.ipynb`: 承载了多项重要功能包括但不限于：
     - • 保存hive表样本到本地供preprocessing_new.py预处理。
@@ -38,6 +37,10 @@
     - • 上线验证，包括下单序列特征线上线下一致性验证；车源、车商向量更新的预处理&打分一致性验证；postman请求向量计算召回分验证
     - • 实验期间auc监控
     - • 实验分析
+
+- **optimization/**
+  - 迭代过程wiki
+ 
 
 ## 运行教程
 ### 1.配环境
