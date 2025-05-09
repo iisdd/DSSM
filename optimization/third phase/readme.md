@@ -8,6 +8,7 @@
 <img src="./pic/bid curve.png" alt="出价曲线" width="666" />
 - 2024-10-01~2024-10-10回溯数据：国庆节分组不太均匀
 <img src="./pic/retrace.png" alt="回溯指标" width="666" />
+
 ## 优化点
 样本：
 - baseline模型
