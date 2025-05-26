@@ -40,4 +40,5 @@
 
 上线后召回分auc/gauc提升约2.5个百分点，排序分auc/gauc与上线前差距不大：
 <img src="./pic/recall auc.png" alt="召回auc/gauc" width="500" />
+
 <img src="./pic/rank auc.png" alt="排序auc/gauc" width="500" />
